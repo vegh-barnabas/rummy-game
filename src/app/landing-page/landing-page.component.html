@@ -1,0 +1,13 @@
+<div>
+  <h1>Rummy game</h1>
+  <p>Welcome to the game! To join a game, type your name and the given code into the input fields. If you want to start a new game, then leave out the code field. To see the rules, click on the <b>Rules</b> button.</p>
+  <button (click)="toggleRules()">Rules</button>
+  <p *ngIf="showRules">TODO: Put rules here</p>
+  <form [formGroup]="landingForm" (ngSubmit)="onSubmit()">
+    <label for="code">Code: </label>
+    <input id="code" type="text" formControlName="code">
+    <label for="name">Last Name: </label>
+    <input id="name" type="text" formControlName="name">
+    <button>Start game</button>
+  </form>
+</div>
