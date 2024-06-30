@@ -6,8 +6,24 @@
   <form [formGroup]="landingForm" (ngSubmit)="onSubmit()">
     <label for="code">Code: </label>
     <input id="code" type="text" formControlName="code">
-    <label for="name">Last Name: </label>
+    <label for="name">Name: </label>
     <input id="name" type="text" formControlName="name">
-    <button>Start game</button>
+<ul>
+  <ng-container *ngIf="code?.invalid && (code?.dirty || code?.touched)">
+    <li *ngIf="code?.hasError('minlength') || code?.hasError('maxlength')">
+      Code must be exactly 5 characters.
+    </li>
+  </ng-container>
+
+  <ng-container *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+    <li *ngIf="name?.hasError('required')">
+      Name is required.
+    </li>
+    <li *ngIf="name?.hasError('minlength')">
+      Name must be at least 3 characters long.
+    </li>
+  </ng-container>
+</ul>
+    <button [disabled]="landingForm.invalid">Start game</button>
   </form>
 </div>
